@@ -24,7 +24,8 @@
     width: 32px;
     height: 32px;
     border: none;
-    background-color: fuchsia;
+    background-color: rgba(0, 0, 0, 0.1);
+    background-image: url('../hamburger.svg');
     cursor: pointer;
 
     /* Accessibly hide text inside. */
