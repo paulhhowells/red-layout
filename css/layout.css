@@ -55,3 +55,14 @@
 	  background-color: cyan;
   }
 }
+
+@media only screen and (max-width: 30em) {
+  .l-header__mid {
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+}
