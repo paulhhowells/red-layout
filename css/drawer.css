@@ -44,16 +44,16 @@
   }
 }
 
-
 @media only screen and (max-width: 28em) {
-  .drawer__inner {
+  .drawer.is-ready .drawer__inner {
     left: 0;
+    backface-visibility: hidden;
   }
-  @supports (transform: translate3d:(var(--drawer-width), 0, 0)) {
+
+  @supports ( transform: translate3d:(var(--drawer-width), 0, 0) ) {
     .drawer__inner {
       /* No transform:translate3d here to enable position:fixed on a child. */
       transition: transform 500ms ease;
-      backface-visibility: hidden;
     }
   }
 
@@ -65,6 +65,7 @@
     height: 100%;
     height: 100vh;
   }
+
   @supports (transform: translate3d:(var(--drawer-width), 0, 0)) {
     .drawer.is-open .drawer__inner {
       /* Replace positioning using left with translate3d for better performance */
@@ -73,7 +74,7 @@
     }
   }
 
-  .drawer__shelf {
+  .drawer.is-ready .drawer__shelf {
     position: absolute;
     display: block;
     box-sizing: border-box;
@@ -93,8 +94,9 @@
     /* This colour will lay over the visible strip of .drawer__main */
     background-color: rgba(0, 0, 0, 0.5);
   }
+
   @supports (transform: translate3d:(var(--drawer-width), 0, 0)) {
-    .drawer__shelf {
+    .drawer.is-ready .drawer__shelf {
       transform: translate3d(-100%, 0, 0);
     }
   }
@@ -103,13 +105,14 @@
     left: -90%;
     left: calc(-100% + 32px);
   }
+
   @supports (transform: translate3d:(var(--drawer-width), 0, 0)) {
     .drawer.is-open .drawer__shelf {
       left: calc(32px);
     }
   }
 
-  .drawer__shelf-inner {
+  .drawer.is-ready .drawer__shelf-inner {
     min-height: 100%;
     min-height: 100vh;
     box-shadow: inset -0.5em 0 0.5em -0.25em rgba(0, 0, 0, 0.25);
