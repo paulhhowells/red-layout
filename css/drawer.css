@@ -1,0 +1,154 @@
+.drawer {
+  --drawer-width: calc(100% - 32px);
+
+  overflow: hidden;
+  position: relative;
+}
+
+.drawer__inner {
+  position: relative;
+}
+
+.drawer__shelf {
+  width: 100%;
+}
+
+.drawer__main {
+  position: relative;
+  opacity: 1;
+  transition: opacity 500ms;
+}
+
+@media only screen {
+  .drawer__button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background-color: fuchsia;
+    cursor: pointer;
+
+    /* Accessibly hide text inside. */
+    text-indent: -9999em;
+    overflow: hidden;
+  }
+
+  .drawer.is-open .drawer__button {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    /* Necessary to catch events if parent does not have padding. */
+    z-index: 1;
+  }
+}
+
+
+@media only screen and (max-width: 28em) {
+  .drawer__inner {
+    left: 0;
+    height: 100%;
+    height: 100vh;
+  }
+  @supports (transform: translate3d:(var(--drawer-width), 0, 0)) {
+    .drawer__inner {
+      transform: translate3d(0, 0, 0);
+      transition: transform 500ms ease;
+      backface-visibility: hidden;
+    }
+  }
+
+  .drawer.is-open .drawer__inner {
+    left: 90%;
+    left: calc(100% - 32px);
+  }
+  @supports (transform: translate3d:(var(--drawer-width), 0, 0)) {
+    .drawer.is-open .drawer__inner {
+      /* Replace positioning using left with translate3d for better performance */
+      left: 0;
+      transform: translate3d(var(--drawer-width), 0, 0) scale3d(1, 1, 1);
+    }
+  }
+
+  .drawer__shelf {
+    position: absolute;
+    display: block;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    height: 100vh;
+    padding-right: 10%;
+    padding-right: calc(32px);
+    overflow-y: scroll;
+    backface-visibility: hidden;
+
+    /* This colour will lay over the visible strip of .drawer__main */
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  @supports (transform: translate3d:(var(--drawer-width), 0, 0)) {
+    .drawer__shelf {
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+
+  .drawer.is-open .drawer__shelf {
+    left: -90%;
+    left: calc(-100% + 32px);
+  }
+  @supports (transform: translate3d:(var(--drawer-width), 0, 0)) {
+    .drawer.is-open .drawer__shelf {
+      left: calc(32px);
+    }
+  }
+
+  .drawer__shelf-inner {
+    min-height: 100%;
+    min-height: 100vh;
+    box-shadow: inset -0.5em 0 0.5em -0.25em rgba(0, 0, 0, 0.25);
+  }
+
+  .drawer__main {}
+
+  .drawer.is-open .drawer__main {
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -webkit-touch-callout: none;
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;
+    opacity: 0.3;
+  }
+}
+
+@media only screen and (min-width: 30em) {
+  .drawer {}
+
+  .drawer__inner {
+    height: auto;
+  }
+
+  .drawer.is-open .drawer__inner {
+    height: auto;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .drawer__shelf {
+    position: static;
+    height: auto;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .drawer.is-open .drawer__shelf {
+  }
+
+  .drawer__shelf-inner {
+    min-height: auto;
+    box-shadow: none;
+  }
+
+  .drawer__main {}
+
+  .drawer.is-open .drawer__main {
+    opacity: 1;
+  }
+}
