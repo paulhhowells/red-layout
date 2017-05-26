@@ -26,6 +26,7 @@
     border: none;
     background-color: rgba(0, 0, 0, 0.1);
     background-image: url('../hamburger.svg');
+    background-position: center center;
     cursor: pointer;
 
     /* Accessibly hide text inside. */
