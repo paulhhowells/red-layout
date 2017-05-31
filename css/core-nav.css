@@ -1,4 +1,9 @@
-.core-nav {}
+.core-nav {
+  display: none;
+}
+.drawer.is-ready .core-nav {
+  display: block;
+}
 
 .core-nav ul,
 .core-nav li {
@@ -11,6 +16,10 @@
 }
 
 @media only screen and (min-width: 30em) {
+  .core-nav {
+    display: block;
+  }
+
   .core-nav ul,
   .core-nav li {
     list-style: none;
